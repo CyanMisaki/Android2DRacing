@@ -17,4 +17,3 @@ public class MainMenuView : MonoBehaviour
         _buttonStart.onClick.RemoveAllListeners();
     }
 }
-

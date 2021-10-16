@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PCAcceleration : BaseInputView
 {
-    public override void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
+    public override void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed, TrailRendererController trail)
     {
-        base.Init(leftMove, rightMove, speed);
+        base.Init(leftMove, rightMove, speed, trail);
         UpdateManager.SubscribeToUpdate(Move);
     }
 

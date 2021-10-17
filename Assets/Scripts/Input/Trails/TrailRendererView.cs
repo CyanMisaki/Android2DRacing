@@ -11,11 +11,6 @@ public abstract class TrailRendererView : MonoBehaviour
         _tapPosition.SubscribeOnChange(OnSwipe);
     }
     
-    protected void OnDestroy()
-    {
-        _tapPosition?.UnSubscriptionOnChange(OnSwipe);
-    }
-
     protected void OnSwipe(Vector3 value)
     {
         transform.position = value;

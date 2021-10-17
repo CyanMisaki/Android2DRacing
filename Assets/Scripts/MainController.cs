@@ -43,6 +43,9 @@ public class MainController : BaseController
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 break;
+            case GameState.Shop:
+                //TODO ShopController
+                break;
             default:
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();

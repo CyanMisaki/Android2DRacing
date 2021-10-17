@@ -3,19 +3,25 @@ using Profile;
 using UnityEngine;
 using Utilities.Ads;
 using Utilities.Analytics;
+using Utilities.Shop;
 
 public class Root : MonoBehaviour
 {
     [SerializeField] private Transform _placeForUi;
     [SerializeField] private UnityAdsTools _adsTools;
+    [SerializeField] private ShopUtility _shopUtility;
 
     private MainController _mainController;
+   
 
     private void Awake()
     {
         
         var analytics = new UnityAnalyticTools();
-        var profilePlayer = new ProfilePlayer(15f, analytics,100);
+        //TODO ShopProducts
+        //var shop = new ShopUtility(products);
+        
+        var profilePlayer = new ProfilePlayer(15f, analytics,100/*, shop*/);
         
         profilePlayer.CurrentState.Value = GameState.Start;
         _mainController = new MainController(_placeForUi, profilePlayer, _adsTools);

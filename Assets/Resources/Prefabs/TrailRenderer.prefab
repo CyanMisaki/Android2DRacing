@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7073318773086440916}
   - component: {fileID: 7073318773086440915}
-  - component: {fileID: 2983408976570350170}
+  - component: {fileID: 1050836641107928620}
   m_Layer: 0
   m_Name: TrailRenderer
   m_TagString: Untagged
@@ -138,7 +138,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &2983408976570350170
+--- !u!114 &1050836641107928620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7073318773086440914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a8350aefad7408fa81b0cbf1c8c31c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 579ab9bd145146929a60a5c85ac7738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trailRenderer: {fileID: 7073318773086440915}

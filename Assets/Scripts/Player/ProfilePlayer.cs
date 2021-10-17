@@ -9,8 +9,8 @@ public class ProfilePlayer
  
      public Car CurrentCar { get; }
      
-     public int Gold { get;  }
- 
+     public int Gold { get; private set; }
+
      public IAnalyticUtility Analytics { get; }
     public ProfilePlayer(float speedCar, IAnalyticUtility analytics, int gold)
     {
@@ -18,6 +18,11 @@ public class ProfilePlayer
         CurrentCar = new Car(speedCar);
         Analytics = analytics;
         Gold = gold;
+    }
+
+    public void AddReward(int summ)
+    {
+        Gold += summ;
     }
 
     

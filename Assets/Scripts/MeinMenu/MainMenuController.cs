@@ -32,7 +32,7 @@ public class MainMenuController : BaseController
 
     private void OnVideoShowSuccess()
     {
-        //reward
+        _profilePlayer.AddReward(10);
     }
 
     private void StartGame()

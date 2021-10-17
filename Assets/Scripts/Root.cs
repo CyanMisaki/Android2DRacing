@@ -1,5 +1,7 @@
-﻿using Profile;
+﻿using System.Collections.Generic;
+using Profile;
 using UnityEngine;
+using Utilities.Analytics;
 
 public class Root : MonoBehaviour
 {
@@ -10,9 +12,13 @@ public class Root : MonoBehaviour
 
     private void Awake()
     {
-        var profilePlayer = new ProfilePlayer(15f);
+        var analytics = new UnityAnalyticTools();
+        var profilePlayer = new ProfilePlayer(15f, analytics);
+        
         profilePlayer.CurrentState.Value = GameState.Start;
         _mainController = new MainController(_placeForUi, profilePlayer);
+       
+        analytics.SendMessage("GameStart", new Dictionary<string, object>());
     }
 
     protected void OnDestroy()

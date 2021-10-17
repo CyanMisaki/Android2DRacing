@@ -1,4 +1,5 @@
-﻿using Profile;
+﻿using System.Collections.Generic;
+using Profile;
 using UnityEngine;
 
 public class MainController : BaseController
@@ -33,6 +34,8 @@ public class MainController : BaseController
                 _gameController?.Dispose();
                 break;
             case GameState.Game:
+                _profilePlayer.Analytics.SendMessage("GameStarted", new Dictionary<string, object>());
+                
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 break;

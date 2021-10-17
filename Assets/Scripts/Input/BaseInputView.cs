@@ -8,7 +8,7 @@ public abstract class BaseInputView : MonoBehaviour
     
     protected float _speed;
     
-    public virtual void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
+    public virtual void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed, TrailRendererController trail)
     {
         _leftMove = leftMove;
         _rightMove = rightMove;

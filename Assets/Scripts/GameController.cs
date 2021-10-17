@@ -10,11 +10,16 @@ public class GameController : BaseController
         var tapeBackgroundController = new TapeBackgroundController(leftMoveDiff, rightMoveDiff);
         AddController(tapeBackgroundController);
         
-        var inputGameController = new InputGameController(leftMoveDiff, rightMoveDiff, profilePlayer.CurrentCar);
+        var trailRendererController = new TrailRendererController();
+        AddController(trailRendererController);
+        
+        var inputGameController = new InputGameController(leftMoveDiff, rightMoveDiff, profilePlayer.CurrentCar, trailRendererController);
         AddController(inputGameController);
             
         var carController = new CarController();
         AddController(carController);
+
+        
     }
 }
 

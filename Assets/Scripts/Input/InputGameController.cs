@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class InputGameController : BaseController
 {
-    public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, Car car)
+    public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, Car car, TrailRendererController trail)
     {
         _view = LoadView();
-        _view.Init(leftMove, rightMove, car.Speed);
+        _view.Init(leftMove, rightMove, car.Speed, trail);
     }
 
     private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/endlessMove"};
@@ -20,4 +20,3 @@ public class InputGameController : BaseController
         return objView.GetComponent<BaseInputView>();
     }
 }
-

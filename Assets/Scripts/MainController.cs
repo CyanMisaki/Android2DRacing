@@ -40,7 +40,7 @@ public class MainController : BaseController
             case GameState.Game:
                 _profilePlayer.Analytics.SendMessage("GameStarted", new Dictionary<string, object>());
                 
-                _gameController = new GameController(_profilePlayer);
+                _gameController = new GameController(_profilePlayer, _placeForUi);
                 _mainMenuController?.Dispose();
                 break;
             case GameState.Shop:

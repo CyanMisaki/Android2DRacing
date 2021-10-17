@@ -1,9 +1,10 @@
-﻿using Tools;
+﻿using InGameUI;
+using Tools;
 using UnityEngine;
 
 public class GameController : BaseController
 {
-    public GameController(ProfilePlayer profilePlayer)
+    public GameController(ProfilePlayer profilePlayer, Transform placeForUI)
     {
         var leftMoveDiff = new SubscriptionProperty<float>();
         var rightMoveDiff = new SubscriptionProperty<float>();
@@ -21,7 +22,10 @@ public class GameController : BaseController
         var carController = new CarController();
         AddController(carController);
 
-        
+        var goldUIController = new InGameUIGoldController(profilePlayer.Gold, placeForUI);
+        AddController(goldUIController);
+
+
     }
 }
 

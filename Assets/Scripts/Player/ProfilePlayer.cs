@@ -1,4 +1,5 @@
-﻿using Profile;
+﻿using System;
+using Profile;
 using Tools;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using Utilities.Analytics;
@@ -8,27 +9,26 @@ public class ProfilePlayer
 {
     
     public SubscriptionProperty<GameState> CurrentState { get; }
- 
-     public Car CurrentCar { get; }
-     public int Gold { get; private set; }
+    public SubscriptionProperty<int> Gold { get; }
 
+     public Car CurrentCar { get; }
+     
      public IAnalyticUtility Analytics { get; }
      //public IShop Shop { get; }
      
-    public ProfilePlayer(float speedCar, IAnalyticUtility analytics, int gold/*, IShop shop*/)
+    public ProfilePlayer(float speedCar, IAnalyticUtility analytics /*, IShop shop*/)
     {
         CurrentState = new SubscriptionProperty<GameState>();
         CurrentCar = new Car(speedCar);
         Analytics = analytics;
-        Gold = gold;
-       // Shop = shop;
+        Gold = new SubscriptionProperty<int>();
+
+        // Shop = shop;
     }
 
     public void AddReward(int summ)
     {
-        Gold += summ;
+        Gold.Value += summ;
     }
-
-    
 }
 

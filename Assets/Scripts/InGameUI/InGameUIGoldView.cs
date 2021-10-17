@@ -4,27 +4,28 @@ using UnityEngine.UI;
 
 namespace InGameUI
 {
-    public class InGameUIView : MonoBehaviour
+    public class InGameUIGoldView : MonoBehaviour
     {
         [SerializeField] 
         private Text _goldPlace;
 
-        private IReadOnlySubscriptionProperty<int> _gold;
+        private SubscriptionProperty<int> _gold;
 
-        public void Init(IReadOnlySubscriptionProperty<int> gold)
+        /*public void Init(SubscriptionProperty<int> gold)
         {
             _gold = gold;
             _gold.SubscribeOnChange(ChangeGoldStatus);
-        }
+            ChangeGoldStatus(_gold.Value);
+        }*/
 
         protected void OnDestroy()
         {
-            _gold?.SubscribeOnChange(ChangeGoldStatus);
+            _gold?.UnSubscriptionOnChange(ChangeGoldStatus);
         }
 
-        private void ChangeGoldStatus(int value)
+        public void ChangeGoldStatus(int value)
         {
-            _goldPlace.text = value.ToString();
+            _goldPlace.text = $"{value.ToString()} G";
         }
     
 

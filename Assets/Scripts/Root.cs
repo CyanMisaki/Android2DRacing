@@ -21,9 +21,10 @@ public class Root : MonoBehaviour
         //TODO ShopProducts
         //var shop = new ShopUtility(products);
         
-        var profilePlayer = new ProfilePlayer(15f, analytics,100/*, shop*/);
-        
+        var profilePlayer = new ProfilePlayer(15f, analytics/*, shop*/);
         profilePlayer.CurrentState.Value = GameState.Start;
+        profilePlayer.Gold.Value = 0;
+        
         _mainController = new MainController(_placeForUi, profilePlayer, _adsTools);
        
         analytics.SendMessage("GameStart", new Dictionary<string, object>());

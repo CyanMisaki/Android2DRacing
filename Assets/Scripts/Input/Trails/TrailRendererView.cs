@@ -1,24 +1,20 @@
 ﻿using Tools;
 using UnityEngine;
 
-public class TrailRendererView : MonoBehaviour
+public abstract class TrailRendererView : MonoBehaviour
 {
-    [SerializeField] private TrailRenderer _trailRenderer;
-    private IReadOnlySubscriptionProperty<Vector3> _tapPosition;        
+    private SubscriptionProperty<Vector3> _tapPosition;        
 
-    public void Init(IReadOnlySubscriptionProperty<Vector3> position)
+    public virtual void Init(SubscriptionProperty<Vector3> position)
     {
         _tapPosition = position;
         _tapPosition.SubscribeOnChange(OnSwipe);
     }
     
-    protected void OnDestroy()
+    protected void OnSwipe(Vector3 value)
     {
-        _tapPosition?.SubscribeOnChange(OnSwipe);
+        transform.position = value;
     }
     
-    private void OnSwipe(Vector3 value)
-    {
-        _trailRenderer.transform.position = value;
-    }
+    
 }

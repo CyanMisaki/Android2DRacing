@@ -1,20 +1,25 @@
-﻿using Profile;
+﻿using System.Collections.Generic;
+using Profile;
 using UnityEngine;
+using Utilities.Ads;
 
 public class MainController : BaseController
 {
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
+     private MainMenuController _mainMenuController;
+     private GameController _gameController;
+     private readonly Transform _placeForUi;
+     private readonly ProfilePlayer _profilePlayer;
+     private readonly IAdsShower _adsShower;
+    public MainController(Transform placeForUi, ProfilePlayer profilePlayer, IAdsShower adsShower)
     {
         _profilePlayer = profilePlayer;
+        _adsShower = adsShower;
         _placeForUi = placeForUi;
         OnChangeGameState(_profilePlayer.CurrentState.Value);
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
     }
-
-    private MainMenuController _mainMenuController;
-    private GameController _gameController;
-    private readonly Transform _placeForUi;
-    private readonly ProfilePlayer _profilePlayer;
+ 
+    
 
     protected override void OnDispose()
     {
@@ -29,12 +34,17 @@ public class MainController : BaseController
         switch (state)
         {
             case GameState.Start:
-                _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer);
+                _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer, _adsShower);
                 _gameController?.Dispose();
                 break;
             case GameState.Game:
-                _gameController = new GameController(_profilePlayer);
+                _profilePlayer.Analytics.SendMessage("GameStarted", new Dictionary<string, object>());
+                
+                _gameController = new GameController(_profilePlayer, _placeForUi);
                 _mainMenuController?.Dispose();
+                break;
+            case GameState.Shop:
+                //TODO ShopController
                 break;
             default:
                 _mainMenuController?.Dispose();

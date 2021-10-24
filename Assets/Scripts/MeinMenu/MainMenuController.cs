@@ -14,7 +14,7 @@ public class MainMenuController : BaseController
         _profilePlayer = profilePlayer;
         _adsShower = adsShower;
         _view = LoadView(placeForUi);
-        _view.Init(StartGame, ShowAddRequested);
+        _view.Init(StartGame, ShowAddRequested, ShowGarage);
     }
     
     private MainMenuView LoadView(Transform placeForUi)
@@ -38,6 +38,11 @@ public class MainMenuController : BaseController
     private void StartGame()
     {
         _profilePlayer.CurrentState.Value = GameState.Game;
+    }
+
+    private void ShowGarage()
+    {
+        _profilePlayer.CurrentState.Value = GameState.Garage;
     }
 }
 

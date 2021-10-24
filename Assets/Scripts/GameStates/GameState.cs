@@ -6,6 +6,7 @@
         Start,
         Game,
         Shop,
+        Garage,
     }
 }
 

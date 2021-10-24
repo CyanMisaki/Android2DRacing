@@ -11,7 +11,7 @@ public class ProfilePlayer
     public SubscriptionProperty<GameState> CurrentState { get; }
     public SubscriptionProperty<int> Gold { get; }
 
-     public Car CurrentCar { get; }
+     public Car.Car CurrentCar { get; }
      
      public IAnalyticUtility Analytics { get; }
      //public IShop Shop { get; }
@@ -19,7 +19,7 @@ public class ProfilePlayer
     public ProfilePlayer(float speedCar, IAnalyticUtility analytics /*, IShop shop*/)
     {
         CurrentState = new SubscriptionProperty<GameState>();
-        CurrentCar = new Car(speedCar);
+        CurrentCar = new Car.Car(speedCar);
         Analytics = analytics;
         Gold = new SubscriptionProperty<int>();
 

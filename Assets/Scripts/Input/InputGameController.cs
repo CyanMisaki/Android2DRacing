@@ -6,7 +6,7 @@ public class InputGameController : BaseController
     private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/endlessMove"};
     private BaseInputView _view;
     
-    public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, Car car)
+    public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, Car.Car car)
     {
         _view = LoadView();
         _view.Init(leftMove, rightMove, car.Speed);

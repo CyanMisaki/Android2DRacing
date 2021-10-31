@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class CarView : MonoBehaviour
+namespace Car
 {
+    public class CarView : MonoBehaviour
+    {
+    }
 } 
 

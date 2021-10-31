@@ -21,7 +21,7 @@ namespace Inventory.Garage
         private readonly ItemsRepository _upgradeItemsRepository;
         private readonly InventoryModel _inventoryModel;
         private readonly ProfilePlayer _profilePlayer;
-
+        
         public GarageController(Transform placeForUi, [NotNull] List<UpgradeItem> upgradeItem, [NotNull] Car.Car car, ProfilePlayer profilePlayer)
         {
             _car = car;

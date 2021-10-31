@@ -1,4 +1,5 @@
-﻿using Car;
+﻿using Abilities;
+using Car;
 using InGameUI;
 using Tools;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class GameController : BaseController
 
         var goldUIController = new InGameUIGoldController(profilePlayer.Gold, placeForUI);
         AddController(goldUIController);
+        
     }
 }
 

@@ -14,7 +14,7 @@ public class MainMenuController : BaseController
         _profilePlayer = profilePlayer;
         _adsShower = adsShower;
         _view = LoadView(placeForUi);
-        _view.Init(StartGame, ShowAddRequested, ShowGarage);
+        _view.Init(StartGame, ShowAddRequested, ShowGarage,GetDaily,ExitGame);
     }
     
     private MainMenuView LoadView(Transform placeForUi)
@@ -43,6 +43,16 @@ public class MainMenuController : BaseController
     private void ShowGarage()
     {
         _profilePlayer.CurrentState.Value = GameState.Garage;
+    }
+
+    private void ExitGame()
+    {
+        
+    }
+
+    private void GetDaily()
+    {
+        
     }
 }
 

@@ -134,10 +134,10 @@ namespace RewardSystem
             switch (reward.RewardType)
             {
                 case RewardType.Wood:
-                    CurrencyView.Instance.AddWood(reward.Count);
+                    _profilePlayer.Wood.Value += reward.Count;
                     break;
                 case RewardType.Diamond:
-                    CurrencyView.Instance.AddDiamond(reward.Count);
+                    _profilePlayer.Diamond.Value += reward.Count;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

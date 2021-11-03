@@ -26,7 +26,9 @@ public class GameController : BaseController
 
         var goldUIController = new InGameUIGoldController(profilePlayer.Gold, placeForUI);
         AddController(goldUIController);
-        
-    }
-}
 
+        var gameUIController = new GameUIController(placeForUI, profilePlayer);
+        AddController(gameUIController);
+    }
+    
+}

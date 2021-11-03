@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fighting;
 using Inventory;
 using Inventory.Garage;
 using Inventory.PlayerInventory;
@@ -11,12 +12,17 @@ using Utilities.Ads;
 public class MainController : BaseController
 {
     private ResourcePath RewardViewPath = new ResourcePath() { PathResource = "Prefabs/DailyRewardWindow" };
+    private ResourcePath CurrencyPath = new ResourcePath() { PathResource = "Prefabs/CurrencyView" };
+    private ResourcePath FightingViewPath = new ResourcePath() { PathResource = "Prefabs/Fighting" };
     
      private MainMenuController _mainMenuController;
      private GameController _gameController;
      private InventoryController _inventoryController;
      private GarageController _garageController;
      private DailyRewardController _dailyRewardController;
+     private MVCCurrencyController _mvcCurrencyController;
+     //private FightController _fightController;
+     private MVCFightController _mvcFightController;
      
      private readonly Transform _placeForUi;
      private readonly ProfilePlayer _profilePlayer;
@@ -52,19 +58,26 @@ public class MainController : BaseController
                 _gameController?.Dispose();
                 _garageController?.Dispose();
                 _dailyRewardController?.Dispose();
+                //_fightController?.Dispose();
+                _mvcFightController?.Dispose();
+                _mvcCurrencyController?.Dispose();
                 _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer, _adsShower);
                 break;
             
             case GameState.Game:
                 _profilePlayer.Analytics.SendMessage("GameStarted", new Dictionary<string, object>());
                 
+                _mainMenuController?.Dispose();
+                _garageController?.Dispose();
+                _dailyRewardController?.Dispose();
+                //_fightController?.Dispose();
+                _mvcFightController?.Dispose();
+                _mvcCurrencyController?.Dispose();
+                
                 _inventoryController = new InventoryController(_itemConfigs);
                 _inventoryController.ShowInventory();
                 
                 _gameController = new GameController(_profilePlayer, _placeForUi);
-                _mainMenuController?.Dispose();
-                _garageController?.Dispose();
-                _dailyRewardController?.Dispose();
                 break;
             
             case GameState.Shop:
@@ -72,12 +85,15 @@ public class MainController : BaseController
                 break;
             
             case GameState.Garage:
-                _garageController = new GarageController(_placeForUi, _upgradeItems, _profilePlayer.CurrentCar, _profilePlayer);
-                _garageController.Enter();
-                
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
                 _dailyRewardController?.Dispose();
+                //_fightController?.Dispose();
+                _mvcFightController?.Dispose();
+                _mvcCurrencyController?.Dispose();
+                
+                _garageController = new GarageController(_placeForUi, _upgradeItems, _profilePlayer.CurrentCar, _profilePlayer);
+                _garageController.Enter();
                 break;
 
             case GameState.DailyReward:
@@ -85,7 +101,10 @@ public class MainController : BaseController
                 _mainMenuController?.Dispose();
                 _garageController?.Dispose();
                 _inventoryController?.Dispose();
+                //_fightController?.Dispose();
+                _mvcFightController?.Dispose();
                 _dailyRewardController = new DailyRewardController(_profilePlayer, RewardViewPath, _placeForUi);
+                _mvcCurrencyController = new MVCCurrencyController(_profilePlayer, CurrencyPath, _placeForUi);
                 break;
             
             case GameState.Fight:
@@ -94,6 +113,10 @@ public class MainController : BaseController
                 _garageController?.Dispose();
                 _inventoryController?.Dispose();
                 _dailyRewardController?.Dispose();
+                _mvcCurrencyController?.Dispose();
+                //_fightController = new FightController(FightingViewPath, _profilePlayer, _placeForUi);
+                _mvcFightController = new MVCFightController(FightingViewPath, _profilePlayer, _placeForUi);
+                
                 break;
             
             default:
@@ -102,7 +125,11 @@ public class MainController : BaseController
                 _garageController?.Dispose();
                 _inventoryController?.Dispose();
                 _dailyRewardController?.Dispose();
+                _mvcCurrencyController?.Dispose();
+                //_fightController?.Dispose();
+                _mvcFightController?.Dispose();
                 break;
         }
+        
     }
 }

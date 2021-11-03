@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Inventory;
 using Inventory.Garage;
 using Inventory.PlayerInventory;
 using Profile;
+using RewardSystem;
 using UnityEngine;
 using Utilities.Ads;
 
 public class MainController : BaseController
 {
+    private ResourcePath RewardViewPath = new ResourcePath() { PathResource = "Prefabs/DailyRewardWindow" };
+    
      private MainMenuController _mainMenuController;
      private GameController _gameController;
      private InventoryController _inventoryController;
      private GarageController _garageController;
+     private DailyRewardController _dailyRewardController;
      
      private readonly Transform _placeForUi;
      private readonly ProfilePlayer _profilePlayer;
@@ -44,9 +49,10 @@ public class MainController : BaseController
         switch (state)
         {
             case GameState.Start:
-                _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer, _adsShower);
                 _gameController?.Dispose();
                 _garageController?.Dispose();
+                _dailyRewardController?.Dispose();
+                _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer, _adsShower);
                 break;
             
             case GameState.Game:
@@ -58,6 +64,7 @@ public class MainController : BaseController
                 _gameController = new GameController(_profilePlayer, _placeForUi);
                 _mainMenuController?.Dispose();
                 _garageController?.Dispose();
+                _dailyRewardController?.Dispose();
                 break;
             
             case GameState.Shop:
@@ -70,12 +77,31 @@ public class MainController : BaseController
                 
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
+                _dailyRewardController?.Dispose();
+                break;
+
+            case GameState.DailyReward:
+                _gameController?.Dispose();
+                _mainMenuController?.Dispose();
+                _garageController?.Dispose();
+                _inventoryController?.Dispose();
+                _dailyRewardController = new DailyRewardController(_profilePlayer, RewardViewPath, _placeForUi);
+                break;
+            
+            case GameState.Fight:
+                _mainMenuController?.Dispose();
+                _gameController?.Dispose();
+                _garageController?.Dispose();
+                _inventoryController?.Dispose();
+                _dailyRewardController?.Dispose();
                 break;
             
             default:
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
                 _garageController?.Dispose();
+                _inventoryController?.Dispose();
+                _dailyRewardController?.Dispose();
                 break;
         }
     }

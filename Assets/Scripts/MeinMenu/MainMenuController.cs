@@ -47,12 +47,12 @@ public class MainMenuController : BaseController
 
     private void ExitGame()
     {
-        
+        Application.Quit();
     }
 
     private void GetDaily()
     {
-        
+        _profilePlayer.CurrentState.Value = GameState.DailyReward;
     }
 }
 

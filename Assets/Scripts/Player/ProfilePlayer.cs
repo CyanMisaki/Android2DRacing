@@ -1,7 +1,7 @@
 ﻿using System;
 using Profile;
 using Tools;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+
 using Utilities.Analytics;
 using Utilities.Shop;
 
@@ -14,19 +14,12 @@ public class ProfilePlayer
      public Car.Car CurrentCar { get; }
      
      public IAnalyticUtility Analytics { get; }
-     //public IShop Shop { get; }
      
      
      public PlayerPrefsSubscriptionProperty<int> Wood { get; }
      public PlayerPrefsSubscriptionProperty<int> Diamond { get; }
      
      
-     /*
-     private Health _playerHealth;
-     private Money _playerMoney;
-     private Power _playerPower;
-     private Pursuit _playerPursuit;*/
-
      public PlayerPrefsSubscriptionProperty<float> Health { get; }
      public PlayerPrefsSubscriptionProperty<int> Money { get; }
      public PlayerPrefsSubscriptionProperty<float> Power { get; }

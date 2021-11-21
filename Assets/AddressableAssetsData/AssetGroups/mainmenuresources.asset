@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: mainmenuresources
+  m_EditorClassIdentifier: 
+  m_GroupName: mainmenuresources
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a7f4f262fe2df0d478ac22c3000fc32c
+  m_SerializeEntries:
+  - m_GUID: 418ab5c27d3054eb89959d9c715e00c9
+    m_Address: Assets/Sprites/PlankSprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6ab2ff034573064449b8c5466739fa23
+    m_Address: Assets/Sprites/StartHoverSprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 90f91bf07d6aec14bb60e830bf64792c
+    m_Address: Assets/Sprites/TruckChassisSprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2664505edf8a0a8428ab81cb59b5c875, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 45a3ad5abcec02c4c89e953f4cddf552, type: 2}
+    - {fileID: 11400000, guid: ac5d733a62b6497489fd2c32c335ee4a, type: 2}

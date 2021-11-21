@@ -1,11 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using AssetBundles;
 using CustomUI;
 using CustomUI.PopupWindow;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
-public class MainMenuView : MonoBehaviour
+
+public class MainMenuView : AssetBundleViewBase
 {
     [SerializeField] 
     private CustomButton _buttonStart;
@@ -21,7 +25,14 @@ public class MainMenuView : MonoBehaviour
     
     [SerializeField] private Button _dailyButton;
     [SerializeField] private Button _exitButton;
-        
+
+    [SerializeField] private Button _loadAssetButton;
+    [SerializeField] private Button _spawnAssetButton;
+    [SerializeField] private RectTransform _mountRootTransform;
+    [SerializeField] private AssetReference _loadPrefab;
+
+    private List<AsyncOperationHandle<GameObject>> _adressablePrefabs = new List<AsyncOperationHandle<GameObject>>();
+
     public void Init(UnityAction startGame, UnityAction rewardAdRequested, UnityAction showGarage, UnityAction getDaily, UnityAction exitGame)
     {
         _buttonStart.onClick.AddListener(startGame);
@@ -33,6 +44,21 @@ public class MainMenuView : MonoBehaviour
         
         _dailyButton.onClick.AddListener(getDaily);
         _exitButton.onClick.AddListener(exitGame);
+
+        _loadAssetButton.onClick.AddListener(LoadAssets);
+        _spawnAssetButton.onClick.AddListener(CreatePrefab);
+    }
+
+    private void CreatePrefab()
+    {
+        var addressablePrefab = Addressables.InstantiateAsync(_loadPrefab, _mountRootTransform);
+        _adressablePrefabs.Add(addressablePrefab);
+    }
+
+    private void LoadAssets()
+    {
+        _loadAssetButton.interactable = false;
+        StartCoroutine(DownloadAndSetAssetBundle());
     }
 
     private void ShowAboutPopup()
@@ -48,5 +74,15 @@ public class MainMenuView : MonoBehaviour
         _showAbout.onClick.RemoveAllListeners();
         _exitButton.onClick.RemoveAllListeners();
         _dailyButton.onClick.RemoveAllListeners();
+        
+        _loadAssetButton.onClick.RemoveAllListeners();
+        _spawnAssetButton.onClick.RemoveAllListeners();
+
+        foreach (var adressablePrefab in _adressablePrefabs)
+            Addressables.ReleaseInstance(adressablePrefab);
+        
+        _adressablePrefabs.Clear();
+        
+        
     }
 }

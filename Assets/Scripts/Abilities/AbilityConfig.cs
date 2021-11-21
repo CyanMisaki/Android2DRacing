@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Abilities
 {
+    [CreateAssetMenu(fileName = "Ability", menuName = "Ability")]
     public class AbilityConfig : ScriptableObject
     {
         [SerializeField] private ItemConfig _item;

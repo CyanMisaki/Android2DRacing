@@ -2,7 +2,7 @@
 using UnityEditor;
 
 [CustomEditor(typeof(Cloner))]
-public class ClonerEditor : Editor {
+public class ClonerEditor : UnityEditor.Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 

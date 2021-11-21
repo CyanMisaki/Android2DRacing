@@ -12,6 +12,9 @@ namespace AssetBundles
         [SerializeField] private DataSpriteBundle[] _dataSpriteBundles;
 
         private AssetBundle _spriteAssetBundle;
+        
+        internal DateTime _bundleTime;
+        internal DateTime _addressablesTime;
 
         protected IEnumerator DownloadAndSetAssetBundle()
         {
@@ -25,6 +28,7 @@ namespace AssetBundles
 
             SetDownloadAsset();
             yield return null;
+            
         }
 
         private IEnumerator GetSpritesAssetBundle()
@@ -56,6 +60,7 @@ namespace AssetBundles
             {
                 data.Image.sprite = _spriteAssetBundle.LoadAsset<Sprite>(data.AssetBundleName);
             }
+            Debug.Log($"{Math.Abs(_bundleTime.Millisecond-DateTime.Now.Millisecond)} ms. bundle downloading and setting");
         }
     }
 }

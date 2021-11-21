@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AssetBundles;
 using CustomUI;
 using CustomUI.PopupWindow;
@@ -51,12 +52,15 @@ public class MainMenuView : AssetBundleViewBase
 
     private void CreatePrefab()
     {
+        _addressablesTime = DateTime.Now;
         var addressablePrefab = Addressables.InstantiateAsync(_loadPrefab, _mountRootTransform);
         _adressablePrefabs.Add(addressablePrefab);
+        Debug.Log($"{Math.Abs(_addressablesTime.Millisecond-DateTime.Now.Millisecond)} ms. addressables instantiating");
     }
 
     private void LoadAssets()
     {
+        _bundleTime = DateTime.Now;
         _loadAssetButton.interactable = false;
         StartCoroutine(DownloadAndSetAssetBundle());
     }

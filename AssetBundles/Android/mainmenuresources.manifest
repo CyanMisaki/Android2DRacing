@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 4169193882
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 904ef6665bc0e0761b08ecbd3fc5e2ef
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Sprites/TruckChassisSprite.png
+- Assets/Sprites/PlankSprite.png
+- Assets/Sprites/StartHoverSprite.png
+Dependencies: []

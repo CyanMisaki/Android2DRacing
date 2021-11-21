@@ -3,6 +3,7 @@ using CustomUI;
 using CustomUI.PopupWindow;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class MainMenuView : MonoBehaviour
 {
@@ -17,8 +18,11 @@ public class MainMenuView : MonoBehaviour
     private CustomButton _showAbout;
 
     [SerializeField] private AdditionalWindow _aboutWindow;
+    
+    [SerializeField] private Button _dailyButton;
+    [SerializeField] private Button _exitButton;
         
-    public void Init(UnityAction startGame, UnityAction rewardAdRequested, UnityAction showGarage)
+    public void Init(UnityAction startGame, UnityAction rewardAdRequested, UnityAction showGarage, UnityAction getDaily, UnityAction exitGame)
     {
         _buttonStart.onClick.AddListener(startGame);
         _showRewarded.onClick.AddListener(rewardAdRequested);
@@ -26,6 +30,9 @@ public class MainMenuView : MonoBehaviour
         
         _showAbout.onClick.AddListener(ShowAboutPopup);
         _aboutWindow.gameObject.SetActive(false);
+        
+        _dailyButton.onClick.AddListener(getDaily);
+        _exitButton.onClick.AddListener(exitGame);
     }
 
     private void ShowAboutPopup()
@@ -39,5 +46,7 @@ public class MainMenuView : MonoBehaviour
         _showRewarded.onClick.RemoveAllListeners();
         _showGarage.onClick.RemoveAllListeners();
         _showAbout.onClick.RemoveAllListeners();
+        _exitButton.onClick.RemoveAllListeners();
+        _dailyButton.onClick.RemoveAllListeners();
     }
 }

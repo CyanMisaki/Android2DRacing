@@ -29,6 +29,18 @@ public class BaseController : IDisposable
         OnDispose();
     }
 
+    protected void DisposeControllers()
+    {
+        if (_isDisposed) return;
+        _isDisposed = true;
+        if (_baseControllers == null) return;
+        foreach (var baseController in _baseControllers)
+        {
+            baseController?.Dispose();
+        }
+        _baseControllers.Clear();
+    }
+
     protected void AddController(BaseController baseController)
     {
         _baseControllers.Add(baseController);

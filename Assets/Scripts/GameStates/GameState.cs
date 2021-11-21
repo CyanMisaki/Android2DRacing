@@ -7,6 +7,8 @@
         Game,
         Shop,
         Garage,
+        DailyReward,
+        Fight
     }
 }
 
